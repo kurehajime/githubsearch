@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+        <div>
+      Search: <input ng-model="query"><button class="btn" ng-click="search()">Search repository</button>
+        </div>
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="-stargazers_count">Star</option>
+        <option value="-updated_at">update</option>
+      </select>
+
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+
+      <ul class="repos">
+        <li ng-repeat="repo in repos | orderBy:orderProp" class="thumbnail">
+          <a href="{{repo.html_url}}" class="thumb"><img ng-src="{{repo.owner.avatar_url}}"></a>
+          <a href="{{repo.html_url}}">{{repo.name}}</a>
+          <p>{{repo.description}}</p>
+            <p><b>create:</b>{{repo.created_at.substr(0,10)}} / <b>update:</b>{{repo.updated_at.substr(0,10)}}</p>
+            <p>{{repo.stargazers_count}} Stars</p>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
